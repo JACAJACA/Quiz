@@ -22,7 +22,6 @@ const styles = StyleSheet.create ({
 
     text: {
         textAlign: 'center',
-        marginLeft: 20,
         paddingVertical: 10,
         fontSize: 20,
         color: 'rgb(254, 250, 224)',

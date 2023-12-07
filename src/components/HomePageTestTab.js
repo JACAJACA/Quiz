@@ -2,13 +2,13 @@ import React from "react";
 import { Text, View, Linking, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const HomePageTestTab = ({ Title }) => {
-    let titleText = Title; 
+const HomePageTestTab = ({ title, nav }) => {
+    let titleText = title; 
+    const navRoute = nav;
     const navigation = useNavigation();
 
     const goToTest = () => {
-        const textToPass = titleText;
-        navigation.navigate('Test', { text: textToPass });
+        navigation.navigate(nav, { text: titleText });
     };
 
     return (
