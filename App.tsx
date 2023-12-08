@@ -40,58 +40,46 @@ function Root() {
         <Drawer.Screen name="Animals" component={Animals} />
         <Drawer.Screen name="Continents" component={Continents} />
         <Drawer.Screen name="Oceans" component={Oceans} />
-        <Drawer.Screen name="Test" component={TestScreen} />
       </Drawer.Navigator>
   );
 }
 
 function App(): JSX.Element {
-  // Jak robie w ten sposob to zawsze po odswiezeniu initialRoute = Regulations
-  const [showRegulations, setRegulationsOff] = useState(false);
-
+  const [initialScreen, setInitialScreen] = useState('Regulations');
+ 
   useEffect(() => {
-    const checkRegulations = async () => {
-      try {
-        await AsyncStorage.getItem('regulaminShown').then((value) => {
-          if (value === null) {
-            setRegulationsOff(true);
-          } else {
-            setRegulationsOff(false);
-          }
-        });
-      } catch (e) {
-        console.error('Error checking regulations:', e);
-      }
-    };
-
-    SplashScreen.hide();
-    checkRegulations();
+     checkRegulations();
   }, []);
-
-  if (showRegulations) {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Regulations">
-          <Stack.Screen name="Regulations" component={RegulationsScreen}/>
-          <Stack.Screen name="Home" component={HomeScreen}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  } else {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Root">
-          <Stack.Screen name="Root" component={Root}/>
-          <Stack.Screen name="Regulations" component={RegulationsScreen}/>
-          <Stack.Screen name="Results" component={ResultScreen} />
-          <Stack.Screen name="Test" component={TestScreen} />
-          <Stack.Screen name="Animals" component={Animals} />
-          <Stack.Screen name="Continents" component={Continents} />
-          <Stack.Screen name="Oceans" component={Oceans} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
-};
-
-export default App;
+ 
+  const checkRegulations = async () => {
+     try {
+       const value = await AsyncStorage.getItem('regulaminShown');
+       console.log('Value from AsyncStorage:', value);
+   
+       if (value !== null && value === 'true') {
+         setInitialScreen('Root');
+       } else {
+         setInitialScreen('Regulations');
+       }
+       SplashScreen.hide();
+     } catch (e) {
+       console.error('Error checking regulations:', e);
+     }
+  };
+ 
+  return (
+     <NavigationContainer>
+       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={initialScreen}>
+         <Stack.Screen name="Root" component={Root} />
+         <Stack.Screen name="Regulations" component={RegulationsScreen} />
+         <Stack.Screen name="Results" component={ResultScreen} />
+         <Stack.Screen name="Test" component={TestScreen} />
+         <Stack.Screen name="Animals" component={Animals} />
+         <Stack.Screen name="Continents" component={Continents} />
+         <Stack.Screen name="Oceans" component={Oceans} />
+       </Stack.Navigator>
+     </NavigationContainer>
+  );
+ }
+ 
+ export default App;

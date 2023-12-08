@@ -5,12 +5,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 function RegulationsScreen({ navigation }) {
     const acceptRegulations = async () => {
         try {
-            await AsyncStorage.setItem('regulaminShown', 'true');
-            navigation.navigate('Home');
+          await AsyncStorage.setItem('regulaminShown', 'true');
+          navigation.navigate('Root');
         } catch (e) {
-            console.error('Error checking regulations:', e);
+          console.error('Error setting regulations flag:', e);
         }
+      };
+
+    /*const goToRoot = () => {
+        navigation.navigate('Root');
     };
+
+    acceptRegulations();*/
 
     return (
         <View style={[styles.container]}>

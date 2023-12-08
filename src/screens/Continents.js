@@ -98,7 +98,7 @@ const Continents = () => {
   const renderResults = () => {
     return (
       <View style={[styles.resultsContainer]}>
-        <Text style={[styles.resultsText]}>Twój wynik: {score} / {tasks.length}</Text>
+        <Text style={[styles.resultsText]}>Your score: {score} / {tasks.length}</Text>
         <GoHomeButton />
       </View>
     );
