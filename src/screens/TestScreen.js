@@ -170,6 +170,7 @@ const styles = StyleSheet.create ({
         padding: 30,
         color: 'rgb(254, 250, 224)',
         fontSize: 25,
+        fontFamily: 'RobotoSlab-Regular',
     },
 
     questionContainer: {
@@ -186,6 +187,7 @@ const styles = StyleSheet.create ({
     questionText: {
         padding: 15,
         fontSize: 25,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(254, 250, 224)',
     },
 
@@ -208,6 +210,7 @@ const styles = StyleSheet.create ({
         textAlign: 'center',
         padding: 15,
         fontSize: 20,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(254, 250, 224)', 
     },
 
@@ -222,6 +225,7 @@ const styles = StyleSheet.create ({
     textAlign: 'center',
     paddingBottom: 20,
     fontSize: 25,
+    fontFamily: 'RobotoSlab-Regular',
     color: 'rgb(254, 250, 224)',
   },
 });

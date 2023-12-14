@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         fontSize: 20,
-        fontWeight: "bold",
+        fontFamily: 'RobotoSlab-Bold',
     },
 });
 

@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     headerCell: {
         flex: 1,
         fontSize: 15,
+        fontFamily: 'RobotoSlab-Regular',
         paddingVertical: 15,
         paddingHorizontal: 5,
         fontWeight: 'bold',
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
     headerCellNick: {
       flex: 2,
       fontSize: 15,
+      fontFamily: 'RobotoSlab-Regular',
       paddingVertical: 15,
       paddingHorizontal: 5,
       fontWeight: 'bold',
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
   headerCellType: {
     flex: 3,
     fontSize: 15,
+    fontFamily: 'RobotoSlab-Regular',
     paddingVertical: 15,
     paddingHorizontal: 5,
     fontWeight: 'bold',
@@ -121,6 +124,7 @@ const styles = StyleSheet.create({
     cell: {
         flex: 1,
         fontSize: 15,
+        fontFamily: 'RobotoSlab-Regular',
         paddingVertical: 15,
         paddingHorizontal: 5,
         textAlign: 'center',
@@ -133,6 +137,7 @@ const styles = StyleSheet.create({
     cellNick: {
       flex: 2,
       fontSize: 15,
+      fontFamily: 'RobotoSlab-Regular',
       paddingVertical: 15,
       paddingHorizontal: 5,
       textAlign: 'center',
@@ -144,7 +149,8 @@ const styles = StyleSheet.create({
 
     cellType: {
       flex: 3,
-      fontSize: 15,
+      fontSize: 14,
+      fontFamily: 'RobotoSlab-Regular',
       paddingVertical: 15,
       paddingHorizontal: 5,
       textAlign: 'center',

@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 20,
         fontSize: 30,
-        fontWeight: 'bold',
+        fontFamily: 'RobotoSlab-Bold',
         color: 'rgb(254, 250, 224)',
     },
 
@@ -321,6 +321,7 @@ const styles = StyleSheet.create({
     regulationsText: {
         textAlign: 'justify',
         fontSize: 15,
+        fontFamily: 'RobotoSlab-Regular',
         marginBottom: -150,
         color: 'rgb(254, 250, 224)',
     },
@@ -337,6 +338,7 @@ const styles = StyleSheet.create({
         margin: 5,
         paddingVertical: 10,
         fontSize: 15,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(254, 250, 224)',
     },
 
@@ -354,7 +356,8 @@ const styles = StyleSheet.create({
         color: 'rgb(254, 250, 224)',
         paddingHorizontal: 20,
         paddingVertical: 10,
-        fontWeight: "bold",
+        fontSize: 20,
+        fontFamily: 'RobotoSlab-Bold',
     },
 });
 

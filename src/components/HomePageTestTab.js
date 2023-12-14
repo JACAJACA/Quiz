@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         padding: 10,
         fontSize: 20,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(254, 250, 224)',
     },
 
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
         marginRight: 150,
         marginLeft: 5,
         paddingLeft: 10,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(221, 161, 94)',
     },
 
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         padding: 10,
         fontSize: 15,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(254, 250, 224)',
     },
 });

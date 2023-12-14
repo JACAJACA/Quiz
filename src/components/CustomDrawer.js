@@ -14,7 +14,7 @@ const CustomDrawer = props => {
               style={{
                 color: 'rgb(254, 250, 224)',
                 fontSize: 30,
-                fontWeight: 'bold',
+                fontFamily: 'RobotoSlab-Bold',
                 marginBottom: 5,
               }}>
               Quiz app

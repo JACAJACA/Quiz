@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         color: 'rgb(254, 250, 224)',
         paddingHorizontal: 20,
         paddingVertical: 10,
-        fontWeight: "bold",
+        fontSize: 20,
+        fontFamily: 'RobotoSlab-Bold',
     },
 });
 

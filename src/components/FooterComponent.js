@@ -24,6 +24,7 @@ const styles = StyleSheet.create ({
         textAlign: 'center',
         paddingVertical: 10,
         fontSize: 20,
+        fontFamily: 'RobotoSlab-Regular',
         color: 'rgb(254, 250, 224)',
     },
 

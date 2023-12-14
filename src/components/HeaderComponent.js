@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
     }, 
 
     text: {
-        textAlign: 'center',
         marginLeft: 20,
+        marginRight: 80,
         paddingTop: 20,
         paddingBottom: 20,
         fontSize: 30,
-        fontWeight: 'bold',
+        fontFamily: 'RobotoSlab-Bold',
         color: 'rgb(254, 250, 224)',
     },
 

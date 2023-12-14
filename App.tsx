@@ -29,6 +29,7 @@ function Root() {
         drawerLabelStyle: {
           marginLeft: 20,
           fontSize: 20,
+          fontFamily: 'RobotoSlab-Regular',
         },
         }}>
         <Drawer.Screen name="Home" component={HomeScreen} />
