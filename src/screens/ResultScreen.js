@@ -19,7 +19,10 @@ const ResultScreen = () => {
       },
     })
       .then(response => response.json())
-      .then(data => setResults(data))
+      .then(data => {
+        const sortedData = data.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
+        setResults(sortedData);
+      })
       .catch(error => console.error('Error fetching data:', error))
       .finally(() => setRefreshing(false));
   };
