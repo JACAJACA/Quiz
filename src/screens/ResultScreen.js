@@ -7,60 +7,39 @@ const ResultScreen = () => {
   const [results, setResults] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  // Przykładowa tablica obiektów
-  const resultsData = [
-    { 
-        key: 1,
-        nick: 'Marek',
-        score: 18,
-        total: 20,
-        type: "historia",
-        date: "2022-11-22" 
-    },
-    {
-        key: 2,
-        nick: "Anna",
-        score: 15,
-        total: 20,
-        type: "geografia",
-        date: "2022-12-05"
-    },
-    {
-        key: 3,
-        nick: "Piotr",
-        score: 22,
-        total: 25,
-        type: "fizyka",
-        date: "2022-10-15"
-    },
-  ];
+  const resultsData = [  ];
 
   useEffect(() => {
-    // Symulacja pobierania danych (np. z serwera) - Możesz zastąpić prawdziwym pobieraniem danych
     fetchData();
   }, []);
 
   const fetchData = () => {
-    // Symulacja pobierania danych
-    setResults(resultsData);
+    fetch('https://tgryl.pl/quiz/results?last=20', {
+      method: 'GET',
+      headers: {
+        'Contenent-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => setResults(data))
+      .catch(error => console.error('Error fetching data:', error))
+      .finally(() => setRefreshing(false));
   };
 
   const handleRefresh = () => {
     setRefreshing(true);
 
-    // Symulacja odświeżania danych (np. ponowne pobieranie danych z serwera)
     setTimeout(() => {
       fetchData();
-      setRefreshing(false);
-    }, 1000); // Przykładowy czas oczekiwania - dostosuj go do rzeczywistych warunków
+    }, 1000);
   };
 
   const renderItem = ({ item }) => (
     <View style={[styles.row]}>
-      <Text style={styles.cell}>{item.nick}</Text>
+      <Text style={styles.cellNick}>{item.nick}</Text>
       <Text style={styles.cell}>{item.score}</Text>
       <Text style={styles.cell}>{item.total}</Text>
-      <Text style={styles.cell}>{item.type}</Text>
+      <Text style={styles.cellType}>{item.type}</Text>
     </View>
   );
 
@@ -69,15 +48,15 @@ const ResultScreen = () => {
       <HeaderComponent screenName="Result"/>
       <View style={[styles.listContainer]}>
         <View style={[styles.row]}>
-            <Text style={styles.headerCell}>Nick</Text>
+            <Text style={styles.headerCellNick}>Nick</Text>
             <Text style={styles.headerCell}>Score</Text>
             <Text style={styles.headerCell}>Total</Text>
-            <Text style={styles.headerCell}>Type</Text>
+            <Text style={styles.headerCellType}>Type</Text>
         </View>  
         <FlatList
         data={results}
         renderItem={renderItem}
-        keyExtractor={(item) => item.key.toString()}
+        keyExtractor={(item) => item.id}
         refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
         }
@@ -113,6 +92,34 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(188, 108, 37)',
     },
 
+    headerCellNick: {
+      flex: 2,
+      fontSize: 15,
+      paddingVertical: 15,
+      paddingHorizontal: 5,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      borderRightWidth: 1,
+      borderBottomWidth: 1,
+      color: 'rgb(254, 250, 224)',
+      borderColor: 'rgb(221, 161, 94)',
+      backgroundColor: 'rgb(188, 108, 37)',
+  },
+
+  headerCellType: {
+    flex: 3,
+    fontSize: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 5,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    color: 'rgb(254, 250, 224)',
+    borderColor: 'rgb(221, 161, 94)',
+    backgroundColor: 'rgb(188, 108, 37)',
+},
+
     cell: {
         flex: 1,
         fontSize: 15,
@@ -125,15 +132,39 @@ const styles = StyleSheet.create({
         borderColor: 'rgb(221, 161, 94)',
     },
 
+    cellNick: {
+      flex: 2,
+      fontSize: 15,
+      paddingVertical: 15,
+      paddingHorizontal: 5,
+      textAlign: 'center',
+      borderRightWidth: 1,
+      borderBottomWidth: 1,
+      color: 'rgb(254, 250, 224)',
+      borderColor: 'rgb(221, 161, 94)',
+  },
+
+    cellType: {
+      flex: 3,
+      fontSize: 15,
+      paddingVertical: 15,
+      paddingHorizontal: 5,
+      textAlign: 'center',
+      borderRightWidth: 1,
+      borderBottomWidth: 1,
+      color: 'rgb(254, 250, 224)',
+      borderColor: 'rgb(221, 161, 94)',
+  },
+
     listContainer: {
-        marginTop: 30,
-        marginBottom: 10,
-        marginHorizontal: 5,
-        backgroundColor: 'rgb(96, 108, 56)',
-        borderWidth: 4,
-        borderRadius: 4,
-        borderColor: 'rgb(221, 161, 94)',
-    },
+      marginTop: 30,
+      marginBottom: 150,
+      marginHorizontal: 5,
+      backgroundColor: 'rgb(96, 108, 56)',
+      borderWidth: 4,
+      borderRadius: 4,
+      borderColor: 'rgb(221, 161, 94)',
+  },
 });
 
 export default ResultScreen;

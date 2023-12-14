@@ -73,7 +73,6 @@ function App(): JSX.Element {
          <Stack.Screen name="Root" component={Root} />
          <Stack.Screen name="Regulations" component={RegulationsScreen} />
          <Stack.Screen name="Results" component={ResultScreen} />
-         <Stack.Screen name="Test" component={TestScreen} />
          <Stack.Screen name="Animals" component={Animals} />
          <Stack.Screen name="Continents" component={Continents} />
          <Stack.Screen name="Oceans" component={Oceans} />
