@@ -2,23 +2,20 @@ import React from "react";
 import { Text, View, Linking, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const HomePageTestTab = ({ title, nav }) => {
-    let titleText = title; 
-    const navRoute = nav;
+const HomePageTestTab = ({ quizData }) => {
     const navigation = useNavigation();
 
     const goToTest = () => {
-        navigation.navigate(nav, { text: titleText });
+        navigation.navigate(quizData.name);
     };
 
     return (
         <TouchableOpacity onPress={goToTest} style={[styles.container]}>
-            <Text style={[styles.title]}>{titleText}</Text>
-            <Text style={[styles.tag]}
-                    onPress={() => Linking.openURL('http://x.com')}>
-                #Tag1   #Tag2
+            <Text style={[styles.title]}>{quizData.name}</Text>
+            <Text style={[styles.tag]} onPress={() => Linking.openURL('http://x.com')}>
+                {quizData.tags.map(tag => `#${tag}   `)}
             </Text>
-            <Text style={[styles.description]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...</Text>
+            <Text style={[styles.description]}>{quizData.description}</Text>
         </TouchableOpacity>
     );
 };
@@ -42,7 +39,7 @@ const styles = StyleSheet.create({
     },
 
     tag: {
-        width: 130,
+        marginRight: 150,
         marginLeft: 5,
         paddingLeft: 10,
         color: 'rgb(221, 161, 94)',
