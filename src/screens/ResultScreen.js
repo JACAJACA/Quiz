@@ -7,8 +7,6 @@ const ResultScreen = () => {
   const [results, setResults] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const resultsData = [  ];
-
   useEffect(() => {
     fetchData();
   }, []);

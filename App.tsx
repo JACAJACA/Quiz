@@ -12,10 +12,6 @@ import RegulationsScreen from "./src/screens/RegulationsScreen";
 import HomeScreen from './src/screens/HomeScreen';
 import ResultScreen from "./src/screens/ResultScreen";
 import TestScreen from "./src/screens/TestScreen";
-import Animals from "./src/screens/Animals";
-import Continents from "./src/screens/Continents";
-import Oceans from "./src/screens/Oceans";
-
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -37,9 +33,10 @@ function Root() {
         }}>
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Results" component={ResultScreen} />
-        <Drawer.Screen name="Animals" component={Animals} />
-        <Drawer.Screen name="Continents" component={Continents} />
-        <Drawer.Screen name="Oceans" component={Oceans} />
+        <Drawer.Screen name="Moda na sukces" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761e' }} />
+        <Drawer.Screen name="Tranzystor bipolarny i polowy" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761c' }} />
+        <Drawer.Screen name="Wodzowie i dowódcy starożytnego Rzymu" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761d' }} />
+        <Drawer.Screen name="Zagadki matematyczne" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761b' }} />
       </Drawer.Navigator>
   );
 }
@@ -73,9 +70,10 @@ function App(): JSX.Element {
          <Stack.Screen name="Root" component={Root} />
          <Stack.Screen name="Regulations" component={RegulationsScreen} />
          <Stack.Screen name="Results" component={ResultScreen} />
-         <Stack.Screen name="Animals" component={Animals} />
-         <Stack.Screen name="Continents" component={Continents} />
-         <Stack.Screen name="Oceans" component={Oceans} />
+         <Drawer.Screen name="Moda na sukces" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761e' }} />
+        <Drawer.Screen name="Tranzystor bipolarny i polowy" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761c' }} />
+        <Drawer.Screen name="Wodzowie i dowódcy starożytnego Rzymu" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761d' }} />
+        <Drawer.Screen name="Zagadki matematyczne" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761b' }} />
        </Stack.Navigator>
      </NavigationContainer>
   );
