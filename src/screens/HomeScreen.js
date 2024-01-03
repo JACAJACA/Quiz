@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import _ from 'lodash';
 
 import HeaderComponent from "../components/HeaderComponent";
 import HomePageTestTab from "../components/HomePageTestTab";
@@ -13,7 +14,10 @@ function HomeScreen({}) {
             try{
                 const response = await fetch('https://tgryl.pl/quiz/tests');
                 const data = await response.json();
-                setQuizData(data);
+
+                const shuffledData = _.shuffle(data);
+
+                setQuizData(shuffledData);
             } catch (error) {
                 console.error('Error fetching quiz data:', error);
             }

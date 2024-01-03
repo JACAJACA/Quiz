@@ -14,27 +14,26 @@ import ResultScreen from "./src/screens/ResultScreen";
 import TestScreen from "./src/screens/TestScreen";
 import RandomTestScreen from "./src/screens/RandomTestScreen";
 
-let lastRandomId = -1;
+import { shuffle } from 'lodash';
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-function RandomQuiz() {
+const tests = [
+  '62032610069ef9b2616c761e',
+  '62032610069ef9b2616c761c',
+  '62032610069ef9b2616c761d',
+  '62032610069ef9b2616c761b',
+]
 
-  const avillableQuiz = [
-    "62032610069ef9b2616c761e",
-    "62032610069ef9b2616c761c",
-    "62032610069ef9b2616c761d",
-    "62032610069ef9b2616c761b"
-  ];
+const screens = [
+  'Moda na sukces', 
+  'Tranzystor bipolarny i polowy', 
+  'Wodzowie i dowódcy starożytnego Rzymu', 
+  'Zagadki matematyczne',
+]
 
-  let randomId = lastRandomId;
-  while (randomId === lastRandomId) {
-    randomId = Math.floor(Math.random() * avillableQuiz.length);
-  }
-  lastRandomId = randomId;
-
-  return avillableQuiz[randomId];
-}
+const shuffledScreens = shuffle(screens);
 
 function Root() {
   return (
@@ -55,10 +54,9 @@ function Root() {
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Results" component={ResultScreen} />
         <Drawer.Screen name="Random quiz" component={RandomTestScreen} />
-        <Drawer.Screen name="Moda na sukces" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761e' }} />
-        <Drawer.Screen name="Tranzystor bipolarny i polowy" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761c' }} />
-        <Drawer.Screen name="Wodzowie i dowódcy starożytnego Rzymu" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761d' }} />
-        <Drawer.Screen name="Zagadki matematyczne" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761b' }} />
+        {shuffledScreens.map((screen, index) => (
+        <Drawer.Screen key={tests[index]} name={screen} component={TestScreen} initialParams={{ customData: tests[index] }} />
+        ))}
       </Drawer.Navigator>
   );
 }
@@ -92,7 +90,7 @@ function App(): JSX.Element {
          <Stack.Screen name="Root" component={Root} />
          <Stack.Screen name="Regulations" component={RegulationsScreen} />
          <Stack.Screen name="Results" component={ResultScreen} />
-         <Drawer.Screen name="Random quiz" component={TestScreen} initialParams={{ customData: RandomQuiz() }} />
+         <Drawer.Screen name="Random quiz" component={TestScreen} />
          <Drawer.Screen name="Moda na sukces" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761e' }} />
         <Drawer.Screen name="Tranzystor bipolarny i polowy" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761c' }} />
         <Drawer.Screen name="Wodzowie i dowódcy starożytnego Rzymu" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761d' }} />
