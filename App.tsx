@@ -12,9 +12,29 @@ import RegulationsScreen from "./src/screens/RegulationsScreen";
 import HomeScreen from './src/screens/HomeScreen';
 import ResultScreen from "./src/screens/ResultScreen";
 import TestScreen from "./src/screens/TestScreen";
+import RandomTestScreen from "./src/screens/RandomTestScreen";
 
+let lastRandomId = -1;
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
+
+function RandomQuiz() {
+
+  const avillableQuiz = [
+    "62032610069ef9b2616c761e",
+    "62032610069ef9b2616c761c",
+    "62032610069ef9b2616c761d",
+    "62032610069ef9b2616c761b"
+  ];
+
+  let randomId = lastRandomId;
+  while (randomId === lastRandomId) {
+    randomId = Math.floor(Math.random() * avillableQuiz.length);
+  }
+  lastRandomId = randomId;
+
+  return avillableQuiz[randomId];
+}
 
 function Root() {
   return (
@@ -34,6 +54,7 @@ function Root() {
         }}>
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Results" component={ResultScreen} />
+        <Drawer.Screen name="Random quiz" component={RandomTestScreen} />
         <Drawer.Screen name="Moda na sukces" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761e' }} />
         <Drawer.Screen name="Tranzystor bipolarny i polowy" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761c' }} />
         <Drawer.Screen name="Wodzowie i dowódcy starożytnego Rzymu" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761d' }} />
@@ -71,6 +92,7 @@ function App(): JSX.Element {
          <Stack.Screen name="Root" component={Root} />
          <Stack.Screen name="Regulations" component={RegulationsScreen} />
          <Stack.Screen name="Results" component={ResultScreen} />
+         <Drawer.Screen name="Random quiz" component={TestScreen} initialParams={{ customData: RandomQuiz() }} />
          <Drawer.Screen name="Moda na sukces" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761e' }} />
         <Drawer.Screen name="Tranzystor bipolarny i polowy" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761c' }} />
         <Drawer.Screen name="Wodzowie i dowódcy starożytnego Rzymu" component={TestScreen} initialParams={{ customData: '62032610069ef9b2616c761d' }} />
