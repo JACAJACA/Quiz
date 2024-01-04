@@ -14,24 +14,53 @@ import ResultScreen from "./src/screens/ResultScreen";
 import TestScreen from "./src/screens/TestScreen";
 import RandomTestScreen from "./src/screens/RandomTestScreen";
 
+import NetInfo from '@react-native-community/netinfo';
 import { shuffle } from 'lodash';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
+const DATA_STORAGE_KEY = 'serverData';
+
 const fetchServerData = async () => {
   try {
-    const response = await fetch('https://tgryl.pl/quiz/tests');
-    const data = await response.json();
-    return data;
+    const netInfoState = await NetInfo.fetch();
+
+    if (netInfoState.isConnected) {
+      const response = await fetch('https://tgryl.pl/quiz/tests');
+      const data = await response.json();
+
+      await AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(data));
+
+      return data;
+    } else {
+      console.log('No internet connection, attempting to use cached data');
+
+      const cachedData = await AsyncStorage.getItem(DATA_STORAGE_KEY);
+
+      if (cachedData) {
+        return JSON.parse(cachedData);
+      } else {
+        console.error('No internet connection and no cached data available');
+        return [];
+      }
+    }
   } catch (error) {
     console.error('Error fetching data:', error);
-    return [];
+
+    const cachedData = await AsyncStorage.getItem(DATA_STORAGE_KEY);
+
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    } else {
+      console.error('Error and no cached data available');
+      return [];
+    }
   }
 };
 
 interface RootProps {
-  serverData: { id: string; name: string }[]; // Adjust the type based on your actual server response structure
+  serverData: { id: string; name: string }[]; 
 }
 
 function Root({ serverData }: RootProps): JSX.Element {

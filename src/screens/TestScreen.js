@@ -5,6 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import HeaderComponent from '../components/HeaderComponent';
 import GoHomeButton from '../components/GoHomeButton';
 
+import NetInfo from '@react-native-community/netinfo';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const SINGLE_QUIZ_DATA_STORAGE_KEY = 'singleQuizData';
+
 const TestScreen = ({ route }) => {
   const { customData } = route.params;
   const [quizData, setQuizData] = useState(null);
@@ -15,19 +20,47 @@ const TestScreen = ({ route }) => {
   const [showResults, setShowResults] = useState(false);
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+  const fetchData = async () => {
+    try {
+      const netInfoState = await NetInfo.fetch();
+
+      if (netInfoState.isConnected) {
         const response = await fetch('https://tgryl.pl/quiz/test/' + customData);
         const data = await response.json();
+
+        await AsyncStorage.setItem(SINGLE_QUIZ_DATA_STORAGE_KEY, JSON.stringify(data));
+
         setQuizData(data);
         setLoading(false);
-      } catch (error) {
-        console.error('Error fetching quiz data:', error);
-        setLoading(false);
-      }
-    };
+      } else {
+        console.log('No internet connection, attempting to use cached single quiz data');
 
+        const cachedData = await AsyncStorage.getItem(SINGLE_QUIZ_DATA_STORAGE_KEY);
+
+        if (cachedData) {
+          setQuizData(JSON.parse(cachedData));
+          setLoading(false);
+        } else {
+          console.error('No internet connection and no cached single quiz data available');
+          setLoading(false);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching single quiz data:', error);
+
+      const cachedData = await AsyncStorage.getItem(SINGLE_QUIZ_DATA_STORAGE_KEY);
+
+      if (cachedData) {
+        setQuizData(JSON.parse(cachedData));
+      } else {
+        console.error('Error and no cached single quiz data available');
+      }
+
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
